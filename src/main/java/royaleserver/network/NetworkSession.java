@@ -174,6 +174,11 @@ public abstract class NetworkSession implements ClientMessageHandler {
 	}
 
 	@Override
+	public boolean handleTournamentCancel(TournamentCancel message) throws Throwable {
+		throw new UnhandledMessageException(message);
+	}
+
+	@Override
 	public boolean handleMatchmakeStart(MatchmakeStart message) throws Throwable {
 		throw new UnhandledMessageException(message);
 	}

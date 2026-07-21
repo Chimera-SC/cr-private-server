@@ -14,6 +14,7 @@ public final class ChestBuy extends ClientCommand {
 	public long accountId;
 
 	public byte unknown_3;
+	public int chestId;
 	public Chest chest;
 
 	public ChestBuy() {
@@ -38,6 +39,8 @@ public final class ChestBuy extends ClientCommand {
 		accountId = stream.getRrsLong();
 		unknown_3 = stream.getByte();
 
-		chest = Chest.by(stream.getRrsInt32());
+		chestId = stream.getRrsInt32();
+		chest = Chest.by(chestId);
+		System.out.println("Chest: " + chestId);
 	}
 }

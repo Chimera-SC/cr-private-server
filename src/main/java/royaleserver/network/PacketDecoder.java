@@ -42,11 +42,7 @@ public class PacketDecoder extends ByteToMessageDecoder {
 			// if there is empty payload packets then handle it immediately
 			if (payloadLength == 0) {
 				hasHeader = false;
-				if (header.id == 10108) {
-					header.decrypted = new byte[0];
-				} else {
-					crypto.decryptPacket(header);
-				}
+				header.decrypted = new byte[0];
 				ClientMessage message = processPacket();
 				if (message != null) out.add(message);
 				return;

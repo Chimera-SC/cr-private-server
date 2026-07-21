@@ -377,6 +377,21 @@ public class Player extends NetworkSession implements ClientMessageHandler, Clie
 		}
 	}
 
+	protected void openCrownChest(Chest chest) {
+		endOpeningChest();
+
+		ChestOpenOk command = new ChestOpenOk();
+		Filler.fill(command, openingChest = chestGenerator.generateChest(this, chest, random));
+
+		CommandResponse response = new CommandResponse();
+		response.command = command;
+		session.sendMessage(response);
+
+		if (openingChest.optionSize() == 1) {
+			endOpeningChest();
+		}
+	}
+
 	protected void sendOwnHomeData() {
 		HomeDataOwn response = new HomeDataOwn();
 		Filler.fill(response, entity, deck, cardsAfterDeck, decks);
@@ -622,6 +637,17 @@ public class Player extends NetworkSession implements ClientMessageHandler, Clie
 	}
 
 	@Override
+	public boolean handleTournamentCancel(TournamentCancel message) throws Throwable {
+		MatchmakeCancelOk response = new MatchmakeCancelOk();
+		MatchmakeInfo response2 = new MatchmakeInfo();
+
+		session.sendMessage(response);
+		session.sendMessage(response2);
+
+		return true;
+	}
+
+	@Override
 	public boolean handleMatchmakeStart(MatchmakeStart message) throws Throwable {
 		SectorState response = new SectorState();
 
@@ -723,6 +749,13 @@ public class Player extends NetworkSession implements ClientMessageHandler, Clie
 	public boolean handleChestBuy(ChestBuy command) throws Throwable {
 		// TODO: Check chest, gems, etc.
 		openChest(command.chest);
+		return true;
+	}
+
+	@Override
+	public boolean handleCrownChestBuy(CrownChestBuy command) throws Throwable {
+		// TODO: Check chest, gems, etc.
+		openCrownChest(command.chest);
 		return true;
 	}
 
