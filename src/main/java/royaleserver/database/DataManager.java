@@ -7,7 +7,7 @@ import royaleserver.ServerException;
 import royaleserver.config.Config;
 import royaleserver.database.service.*;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import java.lang.reflect.Modifier;
 import java.util.Properties;
 
@@ -33,7 +33,7 @@ public class DataManager {
 
 		switch (config.get("database.provider").getAsString()) {
 		case "mysql":
-			properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
+			properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 			properties.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
 
 			properties.setProperty("hibernate.connection.CharSet", "utf8");

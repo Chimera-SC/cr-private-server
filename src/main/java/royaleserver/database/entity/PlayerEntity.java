@@ -5,7 +5,7 @@ import royaleserver.logic.Arena;
 import royaleserver.logic.ClanRole;
 import royaleserver.logic.ExpLevel;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;

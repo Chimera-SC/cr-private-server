@@ -2,7 +2,7 @@ package royaleserver.database.entity;
 
 import royaleserver.logic.Chest;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-public final class SCID implements UserType, Serializable {
+public final class SCID implements UserType<SCID>, Serializable {
 	private int high, low;
 	private long value;
 
@@ -75,17 +75,17 @@ public final class SCID implements UserType, Serializable {
 	// Hibernate
 
 	@Override
-	public int[] sqlTypes() {
-		return new int[] { Types.BIGINT };
+	public int getSqlType() {
+		return Types.BIGINT;
 	}
 
 	@Override
-	public Class returnedClass() {
+	public Class<SCID> returnedClass() {
 		return SCID.class;
 	}
 
 	@Override
-	public boolean equals(Object x, Object y) throws HibernateException {
+	public boolean equals(SCID x, SCID y) throws HibernateException {
 		if (x == null || y == null) {
 			return x == y;
 		}
@@ -94,13 +94,13 @@ public final class SCID implements UserType, Serializable {
 	}
 
 	@Override
-	public int hashCode(Object x) throws HibernateException {
+	public int hashCode(SCID x) throws HibernateException {
 		return x.hashCode();
 	}
 
 	@Override
-	public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
-		final String value = rs.getString(names[0]);
+	public SCID nullSafeGet(ResultSet rs, int position, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
+		final String value = rs.getString(position);
 		if (value == null) {
 			return null;
 		}
@@ -109,17 +109,17 @@ public final class SCID implements UserType, Serializable {
 	}
 
 	@Override
-	public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
+	public void nullSafeSet(PreparedStatement st, SCID value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
 		if (value == null) {
 			st.setNull(index, Types.BIGINT);
 			return;
 		}
 
-		st.setLong(index, ((SCID)value).getValue());
+		st.setLong(index, value.getValue());
 	}
 
 	@Override
-	public Object deepCopy(Object value) throws HibernateException {
+	public SCID deepCopy(SCID value) throws HibernateException {
 		return value;
 	}
 
@@ -129,17 +129,17 @@ public final class SCID implements UserType, Serializable {
 	}
 
 	@Override
-	public Serializable disassemble(Object value) throws HibernateException {
-		return (Serializable)value;
+	public Serializable disassemble(SCID value) throws HibernateException {
+		return value;
 	}
 
 	@Override
-	public Object assemble(Serializable cached, Object owner) throws HibernateException {
-		return cached;
+	public SCID assemble(Serializable cached, Object owner) throws HibernateException {
+		return (SCID)cached;
 	}
 
 	@Override
-	public Object replace(Object original, Object target, Object owner) throws HibernateException {
+	public SCID replace(SCID original, SCID target, Object owner) throws HibernateException {
 		return original;
 	}
 }

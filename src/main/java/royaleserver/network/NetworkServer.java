@@ -53,8 +53,9 @@ public final class NetworkServer {
 
 		try {
 			channel = bootstrap.bind(server.getConfig().get("server.port").getAsShort()).sync().channel();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error("Failed to bind server port.", e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -62,14 +63,20 @@ public final class NetworkServer {
 	}
 
 	public void close() {
-		try {
-			channel.closeFuture().sync();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		if (channel != null) {
+			try {
+				channel.closeFuture().sync();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 
-		bossGroup.shutdownGracefully();
-		workerGroup.shutdownGracefully();
+		if (bossGroup != null) {
+			bossGroup.shutdownGracefully();
+		}
+		if (workerGroup != null) {
+			workerGroup.shutdownGracefully();
+		}
 	}
 
 	public Server getServer() {

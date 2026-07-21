@@ -1,6 +1,6 @@
 package royaleserver.database.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @MappedSuperclass
 public abstract class LogicEntity<Self extends LogicEntity> {

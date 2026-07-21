@@ -42,7 +42,8 @@ public class PlayerHandler extends SimpleChannelInboundHandler<ClientMessage> im
 		this.server = networkServer.getServer();
 		this.networkServer = networkServer;
 
-		status = Status.HELLO;
+		//status = Status.HELLO;
+		status = Status.LOGIN; // since we're only using rc4, we will force it to login
 	}
 
 	@Override

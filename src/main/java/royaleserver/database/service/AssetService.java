@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import royaleserver.database.entity.AssetEntity;
 import royaleserver.database.util.Transaction;
 
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import java.util.Date;
 
 public class AssetService extends Service {

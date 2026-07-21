@@ -10,6 +10,7 @@ import royaleserver.network.protocol.client.messages.Ping;
 import royaleserver.network.protocol.server.messages.AccountUnlockFailed;
 import royaleserver.network.protocol.server.messages.AccountUnlockOk;
 import royaleserver.network.protocol.server.messages.LoginFailed;
+import royaleserver.network.protocol.server.messages.Pong;
 
 public class CodeEnterPlayer extends NetworkSession implements ClientMessageHandler {
 	public CodeEnterPlayer(Server server, NetworkSessionHandler session) {
@@ -47,6 +48,8 @@ public class CodeEnterPlayer extends NetworkSession implements ClientMessageHand
 	@Override
 	public boolean handlePing(Ping message) throws Throwable {
 		// Server do not have to response ping message, when account activation window is opened, so ignore it.
+		Pong response = new Pong();
+		session.sendMessage(response);
 		return true;
 	}
 }
