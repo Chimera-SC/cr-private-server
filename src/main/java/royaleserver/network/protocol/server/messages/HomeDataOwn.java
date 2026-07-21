@@ -111,7 +111,7 @@ public final class HomeDataOwn extends HomeData {
 
 			// time
 			stream.putRrsInt32((int)System.currentTimeMillis()); // start
-			stream.putRrsInt32(1494930622); // end
+			stream.putRrsInt32(2147483647); // end
 			stream.putRrsInt32((int)System.currentTimeMillis()); // start?
 
 			stream.put(Hex.toByteArray("00 00 00 00 00 00 00 00"));
@@ -132,7 +132,7 @@ public final class HomeDataOwn extends HomeData {
 
 			// time
 			stream.putRrsInt32((int)System.currentTimeMillis()); // start
-			stream.putRrsInt32(1494937500); // end
+			stream.putRrsInt32(2147483647); // end
 			stream.putRrsInt32((int)System.currentTimeMillis()); // start?
 
 			stream.put(Hex.toByteArray("00 00 00 00 00 00 00 00"));
