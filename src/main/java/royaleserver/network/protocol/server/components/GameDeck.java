@@ -10,7 +10,7 @@ public class GameDeck {
 		for (int i = 0; i < 8; ++i) {
 			cards[i] = new GameCard();
 			cards[i].cardId = 1 + i;
-			cards[i].level = 1;
+			cards[i].level = 13;
 		}
 	}
 
