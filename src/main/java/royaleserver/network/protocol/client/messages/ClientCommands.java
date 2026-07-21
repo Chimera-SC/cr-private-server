@@ -49,6 +49,8 @@ public final class ClientCommands extends ClientMessage {
 				break;
 			}
 
+			System.out.println("Handled client command: " + commandId);
+
 			command.decode(stream);
 			commands[i] = command;
 		}
